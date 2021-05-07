@@ -2,6 +2,35 @@
 <html lang="en">
 
 <head>
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Page || Oganik || HTML Template For Organic Stores</title>
@@ -40,100 +69,14 @@
     </div>
     <!-- /.preloader -->
     <div class="page-wrapper">
-        <header class="main-header">
-            <div class="topbar">
-                <div class="container">
-                    <div class="main-logo">
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo-dark.png" width="105" alt="">
-                        </a>
-                        <div class="mobile-nav__buttons">
-                            <a href="#" class="search-toggler"><i class="organik-icon-magnifying-glass"></i></a>
-                            <a href="#" class="mini-cart__toggler"><i class="organik-icon-shopping-cart"></i></a>
-                        </div><!-- /.mobile__buttons -->
-
-                        <span class="fa fa-bars mobile-nav__toggler"></span>
-                    </div><!-- /.main-logo -->
-
-                    <div class="topbar__left">
-                        <div class="topbar__social">
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-facebook-square"></a>
-                            <a href="#" class="fab fa-instagram"></a>
-                        </div><!-- /.topbar__social -->
-                        <div class="topbar__info">
-                            <i class="organik-icon-email"></i>
-                            <p>Email <a href="mailto:info@organik.com">info@organik.com</a></p>
-                        </div><!-- /.topbar__info -->
-                    </div><!-- /.topbar__left -->
-                    <div class="topbar__right">
-                        <div class="topbar__info">
-                            <i class="organik-icon-calling"></i>
-                            <p>Phone <a href="tel:+92-666-888-0000">92 666 888 0000</a></p>
-                        </div><!-- /.topbar__info -->
-                        <div class="topbar__buttons">
-                            <a href="#" class="search-toggler"><i class="organik-icon-magnifying-glass"></i></a>
-                            <a href="#" class="mini-cart__toggler"><i class="organik-icon-shopping-cart"></i></a>
-                        </div><!-- /.topbar__buttons -->
-                    </div><!-- /.topbar__left -->
-
-                </div><!-- /.container -->
-            </div><!-- /.topbar -->
-            <nav class="main-menu">
-                <div class="container">
-                    <div class="main-menu__login">
-                        <a href="#"><i class="organik-icon-user"></i>Login / Register</a>
-                    </div><!-- /.main-menu__login -->
-                    <ul class="main-menu__list">
-                        <li class="dropdown">
-                            <a href="index.html">Home</a>
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home One</a>
-                                </li>
-                                <li><a href="index-2.html">Home Two</a></li>
-                                <li class="dropdown">
-                                    <a href="#">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.html">Header One</a></li>
-                                        <li><a href="index-2.html">Header Two</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="products.html">Shop</a>
-                            <ul>
-                                <li><a href="products.html">Shop</a></li>
-                                <li><a href="product-details.html">Product Details</a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="news.html">News</a>
-                            <ul>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="news-details.html">News Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                    <div class="main-menu__language">
-                        <img src="assets/images/resources/flag-1-1.jpg" alt="">
-                        <label class="sr-only" for="language-select">select language</label>
-                        <!-- /#language-select.sr-only -->
-                        <select class="selectpicker" id="language-select-header">
-                            <option value="english">English</option>
-                            <option value="arabic">Arabic</option>
-                        </select>
-                    </div><!-- /.main-menu__language -->
-                </div><!-- /.container -->
-            </nav>
-            <!-- /.main-menu -->
-        </header><!-- /.main-header -->
+        <!-- Topbar Area Start -->
+	<div w3-include-html="Components\Topbar.html"></div>
+    <!-- Topbar Area End -->
+	
+	<!-- Main Menu Start -->
+	<div w3-include-html="Components\Mainmenu.html"></div>
+    <!--Main Menu End -->
+	
 
         <div class="stricky-header stricked-menu main-menu">
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
@@ -143,11 +86,7 @@
             <!-- /.page-header__bg -->
             <div class="container">
                 <h2>About Us</h2>
-                <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="index.html">Home</a></li>
-                    <li>/</li>
-                    <li><span>About</span></li>
-                </ul><!-- /.thm-breadcrumb list-unstyled -->
+               
             </div><!-- /.container -->
         </section><!-- /.page-header -->
 
@@ -189,186 +128,9 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section><!-- /.about-one -->
-
-        <div class="client-carousel ">
-            <div class="container">
-                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 140, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
-                "0": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "375": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "575": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 3
-                },
-                "767": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 4
-                },
-                "991": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 5
-                },
-                "1199": {
-                    "spaceBetween": 100,
-                    "slidesPerView": 5
-                }
-            }}'>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                        <div class="swiper-slide">
-                            <img src="assets/images/resources/brand-1-1.png" alt="">
-                        </div><!-- /.swiper-slide -->
-                    </div><!-- /.swiper-wrapper -->
-                </div><!-- /.thm-swiper__slider -->
-            </div><!-- /.container -->
-        </div><!-- /.client-carousel -->
-
-        <section class="video-one jarallax" data-jarallax data-speed="0.3" data-imgPosition="50% 50%">
-            <img src="assets/images/backgrounds/video-bg-1-1.jpg" alt="" class="jarallax-img">
-            <div class="container text-center">
-                <a href="https://www.youtube.com/watch?v=u5l4cdUjau4" class="video-popup">
-                    <i class="fa fa-play"></i>
-                </a><!-- /.video-popup -->
-                <h3><span>Get</span> Always Fresh <br>
-                    Organic Food</h3>
-            </div><!-- /.container -->
-        </section><!-- /.video-one -->
-
-        <section class="team-one">
-            <img src="assets/images/shapes/team-shape-1.png" alt="" class="team-one__shape-1">
-            <img src="assets/images/shapes/team-shape-2.png" alt="" class="team-one__shape-2">
-            <div class="container">
-                <div class="block-title text-center">
-                    <div class="block-title__decor"></div><!-- /.block-title__decor -->
-                    <p>Professional People</p>
-                    <h3>Meet the Team</h3>
-                </div><!-- /.block-title -->
-                <div class="row">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="team-card">
-                            <div class="team-card__image">
-                                <img src="assets/images/team/team-1-1.png" alt="">
-                            </div><!-- /.team-card__image -->
-                            <div class="team-card__content">
-                                <h3>Ray Luna</h3>
-                                <div class="team-card__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div><!-- /.team-card__social -->
-                            </div><!-- /.team-card__content -->
-                        </div><!-- /.team-card -->
-                    </div><!-- /.col-md-6 col-lg-3 -->
-                    <div class="col-md-6 col-lg-3">
-                        <div class="team-card">
-                            <div class="team-card__image">
-                                <img src="assets/images/team/team-1-2.png" alt="">
-                            </div><!-- /.team-card__image -->
-                            <div class="team-card__content">
-                                <h3>Ora McLaughlin</h3>
-                                <div class="team-card__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div><!-- /.team-card__social -->
-                            </div><!-- /.team-card__content -->
-                        </div><!-- /.team-card -->
-                    </div><!-- /.col-md-6 col-lg-3 -->
-                    <div class="col-md-6 col-lg-3">
-                        <div class="team-card">
-                            <div class="team-card__image">
-                                <img src="assets/images/team/team-1-3.png" alt="">
-                            </div><!-- /.team-card__image -->
-                            <div class="team-card__content">
-                                <h3>Peter Ramsey</h3>
-                                <div class="team-card__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div><!-- /.team-card__social -->
-                            </div><!-- /.team-card__content -->
-                        </div><!-- /.team-card -->
-                    </div><!-- /.col-md-6 col-lg-3 -->
-                    <div class="col-md-6 col-lg-3">
-                        <div class="team-card">
-                            <div class="team-card__image">
-                                <img src="assets/images/team/team-1-4.png" alt="">
-                            </div><!-- /.team-card__image -->
-                            <div class="team-card__content">
-                                <h3>Eric Miller</h3>
-                                <div class="team-card__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div><!-- /.team-card__social -->
-                            </div><!-- /.team-card__content -->
-                        </div><!-- /.team-card -->
-                    </div><!-- /.col-md-6 col-lg-3 -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </section><!-- /.team-one -->
-
+       
+       
+      
         <section class="testimonials-one">
             <div class="testimonials-one__head">
                 <div class="container">
@@ -408,7 +170,7 @@
                     <div>
                         <div class="testimonials-one__single">
                             <div class="testimonials-one__image">
-                                <img src="assets/images/resources/testi-1-1.png" alt="">
+                               
                             </div><!-- /.testimonials-one__image -->
                             <div class="testimonials-one__content">
                                 <p>I was very impresed by the osfins service lorem ipsum is simply free text used by copy typing
@@ -421,7 +183,7 @@
                     <div>
                         <div class="testimonials-one__single">
                             <div class="testimonials-one__image">
-                                <img src="assets/images/resources/testi-1-2.png" alt="">
+                               
                             </div><!-- /.testimonials-one__image -->
                             <div class="testimonials-one__content">
                                 <p>I was very impresed by the osfins service lorem ipsum is simply free text used by copy typing
@@ -434,7 +196,7 @@
                     <div>
                         <div class="testimonials-one__single">
                             <div class="testimonials-one__image">
-                                <img src="assets/images/resources/testi-1-3.png" alt="">
+                                
                             </div><!-- /.testimonials-one__image -->
                             <div class="testimonials-one__content">
                                 <p>I was very impresed by the osfins service lorem ipsum is simply free text used by copy typing
@@ -448,110 +210,9 @@
             </div><!-- /.container -->
         </section><!-- /.testimonials-one -->
 
-        <footer class="site-footer background-black-2">
-            <img src="assets/images/shapes/footer-bg-1-1.png" alt="" class="site-footer__shape-1">
-            <img src="assets/images/shapes/footer-bg-1-2.png" alt="" class="site-footer__shape-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-widget footer-widget__about-widget">
-                            <a href="index.html" class="footer-widget__logo">
-                                <img src="assets/images/logo-light.png" alt="" width="105" height="43">
-                            </a>
-                            <p class="thm-text-dark">Atiam rhoncus sit amet adip
-                                scing sed ipsum. Lorem ipsum
-                                dolor sit amet adipiscing <br>
-                                sem neque.</p>
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget footer-widget__contact-widget">
-                            <h3 class="footer-widget__title">Contact</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__contact">
-                                <li>
-                                    <i class="fa fa-phone-square"></i>
-                                    <a href="tel:666-888-0000">666 888 0000</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-envelope"></i>
-                                    <a href="mailto:info@company.com">info@company.com</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <a href="#">66 top broklyn street.
-                                        New York</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget footer-widget__links-widget">
-                            <h3 class="footer-widget__title">Links</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__links">
-                                <li>
-                                    <a href="index.html">Top Sellers</a>
-                                </li>
-                                <li>
-                                    <a href="products.html">Shopping</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About Store</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Help</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget__title">Explore</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__links">
-                                <li>
-                                    <a href="products.html">New Products</a>
-                                </li>
-                                <li>
-                                    <a href="checkout.html">My Account</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Support</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">FAQs</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget__title">Newsletter</h3><!-- /.footer-widget__title -->
-                            <form action="#" data-url="YOUR_MAILCHIMP_URL" class="mc-form">
-                                <input type="email" name="EMAIL" id="mc-email" placeholder="Email Address">
-                                <button type="submit">Subscribe</button>
-                            </form>
-                            <div class="mc-form__response"></div><!-- /.mc-form__response -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-            <div class="bottom-footer">
-                <div class="container">
-                    <hr>
-                    <div class="inner-container text-center">
-                        <div class="bottom-footer__social">
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-facebook-square"></a>
-                            <a href="#" class="fab fa-instagram"></a>
-                        </div><!-- /.bottom-footer__social -->
-                        <p class="thm-text-dark">© Copyright <span class="dynamic-year"></span> by Company.com</p>
-                    </div><!-- /.inner-container -->
-                </div><!-- /.container -->
-            </div><!-- /.bottom-footer -->
-        </footer><!-- /.site-footer -->
-
+<!-- Footer Area Start -->
+      <div w3-include-html="Components\Footer.html"></div>
+	   <!-- Footer Area End -->
     </div><!-- /.page-wrapper -->
 
 
@@ -691,6 +352,9 @@
     <script src="assets/vendors/countdown/countdown.min.js"></script>
     <!-- template js -->
     <script src="assets/js/organik.js"></script>
+	<script>
+includeHTML();
+</script>
 </body>
 
 </html>

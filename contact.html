@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
+</script>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Page || Oganik || HTML Template For Organic Stores</title>
+    <title>Contact Page</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png" />
@@ -40,100 +68,18 @@
     </div>
     <!-- /.preloader -->
     <div class="page-wrapper">
-        <header class="main-header">
-            <div class="topbar">
-                <div class="container">
-                    <div class="main-logo">
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo-dark.png" width="105" alt="">
-                        </a>
-                        <div class="mobile-nav__buttons">
-                            <a href="#" class="search-toggler"><i class="organik-icon-magnifying-glass"></i></a>
-                            <a href="#" class="mini-cart__toggler"><i class="organik-icon-shopping-cart"></i></a>
-                        </div><!-- /.mobile__buttons -->
-
-                        <span class="fa fa-bars mobile-nav__toggler"></span>
-                    </div><!-- /.main-logo -->
-
-                    <div class="topbar__left">
-                        <div class="topbar__social">
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-facebook-square"></a>
-                            <a href="#" class="fab fa-instagram"></a>
-                        </div><!-- /.topbar__social -->
-                        <div class="topbar__info">
-                            <i class="organik-icon-email"></i>
-                            <p>Email <a href="mailto:info@organik.com">info@organik.com</a></p>
-                        </div><!-- /.topbar__info -->
-                    </div><!-- /.topbar__left -->
-                    <div class="topbar__right">
-                        <div class="topbar__info">
-                            <i class="organik-icon-calling"></i>
-                            <p>Phone <a href="tel:+92-666-888-0000">92 666 888 0000</a></p>
-                        </div><!-- /.topbar__info -->
-                        <div class="topbar__buttons">
-                            <a href="#" class="search-toggler"><i class="organik-icon-magnifying-glass"></i></a>
-                            <a href="#" class="mini-cart__toggler"><i class="organik-icon-shopping-cart"></i></a>
-                        </div><!-- /.topbar__buttons -->
-                    </div><!-- /.topbar__left -->
-
-                </div><!-- /.container -->
-            </div><!-- /.topbar -->
-            <nav class="main-menu">
-                <div class="container">
-                    <div class="main-menu__login">
-                        <a href="#"><i class="organik-icon-user"></i>Login / Register</a>
-                    </div><!-- /.main-menu__login -->
-                    <ul class="main-menu__list">
-                        <li class="dropdown">
-                            <a href="index.html">Home</a>
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home One</a>
-                                </li>
-                                <li><a href="index-2.html">Home Two</a></li>
-                                <li class="dropdown">
-                                    <a href="#">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.html">Header One</a></li>
-                                        <li><a href="index-2.html">Header Two</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="products.html">Shop</a>
-                            <ul>
-                                <li><a href="products.html">Shop</a></li>
-                                <li><a href="product-details.html">Product Details</a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="news.html">News</a>
-                            <ul>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="news-details.html">News Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                    <div class="main-menu__language">
-                        <img src="assets/images/resources/flag-1-1.jpg" alt="">
-                        <label class="sr-only" for="language-select">select language</label>
-                        <!-- /#language-select.sr-only -->
-                        <select class="selectpicker" id="language-select-header">
-                            <option value="english">English</option>
-                            <option value="arabic">Arabic</option>
-                        </select>
-                    </div><!-- /.main-menu__language -->
-                </div><!-- /.container -->
-            </nav>
-            <!-- /.main-menu -->
-        </header><!-- /.main-header -->
+       
+    <!-- Topbar Area Start -->
+	<div w3-include-html="Components\Topbar.html"></div>
+    <!-- Topbar Area End -->
+	
+	<!-- Main Menu Start -->
+	<div w3-include-html="Components\Mainmenu.html"></div>
+    <!--Main Menu End -->
+	
+	
+          
+         
 
         <div class="stricky-header stricked-menu main-menu">
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
@@ -218,8 +164,8 @@
                         <div class="contact-infos__single">
                             <i class="organik-icon-location"></i>
                             <h3>Visit Anytime</h3>
-                            <p>66 Broklyn Golden Street, <br>
-                                New York. USA</p>
+                            <p>Guduvanchery, Chennai.<br>
+                                 India</p>
                         </div><!-- /.contact-infos__single -->
                     </div>
                     <div>
@@ -227,18 +173,18 @@
                             <i class="organik-icon-email"></i>
                             <h3>Send Email</h3>
                             <p>
-                                <a href="mailto:needhelp@organik.com">needhelp@organik.com</a>
+                                <a href="mailto:needhelp@organik.com">emergency@c2c.education</a>
                                 <br>
-                                <a href="mailto:info@company.com">info@company.com</a>
+                                <a href="mailto:info@company.com">info@c2c.education</a>
                             </p>
                         </div><!-- /.contact-infos__single -->
                     </div>
                     <div>
                         <div class="contact-infos__single">
                             <i class="organik-icon-calling"></i>
-                            <h3>Call Center</h3>
-                            <p><a href="tel:92-666-888-0000">92 666 888 0000</a> <br>
-                                <a href="tel:666-000-6666">666 000 6666</a>
+                            <h3>Contact</h3>
+                            <p><a href="tel:(+91)9445944601">(+91)9445 9446 01</a> <br>
+                                
                             </p>
                         </div><!-- /.contact-infos__single -->
                     </div>
@@ -247,113 +193,16 @@
         </section><!-- /.contact-infos -->
 
         <div class="google-map__default">
-            <iframe title="template google map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd" class="map__default" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.754911184137!2d80.0457835148487!3d12.859100320816074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52f716670d6f7b%3A0x39e241ca90a8cf59!2sC2C%20VENTURE%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1620213400380!5m2!1sen!2sin" loading="lazy"></iframe>
+
         </div>
         <!-- /.google-map -->
-
-        <footer class="site-footer background-black-2">
-            <img src="assets/images/shapes/footer-bg-1-1.png" alt="" class="site-footer__shape-1">
-            <img src="assets/images/shapes/footer-bg-1-2.png" alt="" class="site-footer__shape-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-widget footer-widget__about-widget">
-                            <a href="index.html" class="footer-widget__logo">
-                                <img src="assets/images/logo-light.png" alt="" width="105" height="43">
-                            </a>
-                            <p class="thm-text-dark">Atiam rhoncus sit amet adip
-                                scing sed ipsum. Lorem ipsum
-                                dolor sit amet adipiscing <br>
-                                sem neque.</p>
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget footer-widget__contact-widget">
-                            <h3 class="footer-widget__title">Contact</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__contact">
-                                <li>
-                                    <i class="fa fa-phone-square"></i>
-                                    <a href="tel:666-888-0000">666 888 0000</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-envelope"></i>
-                                    <a href="mailto:info@company.com">info@company.com</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <a href="#">66 top broklyn street.
-                                        New York</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget footer-widget__links-widget">
-                            <h3 class="footer-widget__title">Links</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__links">
-                                <li>
-                                    <a href="index.html">Top Sellers</a>
-                                </li>
-                                <li>
-                                    <a href="products.html">Shopping</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About Store</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Help</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget__title">Explore</h3><!-- /.footer-widget__title -->
-                            <ul class="list-unstyled footer-widget__links">
-                                <li>
-                                    <a href="products.html">New Products</a>
-                                </li>
-                                <li>
-                                    <a href="checkout.html">My Account</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Support</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">FAQs</a>
-                                </li>
-                            </ul><!-- /.list-unstyled footer-widget__contact -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget__title">Newsletter</h3><!-- /.footer-widget__title -->
-                            <form action="#" data-url="YOUR_MAILCHIMP_URL" class="mc-form">
-                                <input type="email" name="EMAIL" id="mc-email" placeholder="Email Address">
-                                <button type="submit">Subscribe</button>
-                            </form>
-                            <div class="mc-form__response"></div><!-- /.mc-form__response -->
-                        </div><!-- /.footer-widget -->
-                    </div><!-- /.col-sm-12 col-md-6 col-lg-2 -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-            <div class="bottom-footer">
-                <div class="container">
-                    <hr>
-                    <div class="inner-container text-center">
-                        <div class="bottom-footer__social">
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-facebook-square"></a>
-                            <a href="#" class="fab fa-instagram"></a>
-                        </div><!-- /.bottom-footer__social -->
-                        <p class="thm-text-dark">© Copyright <span class="dynamic-year"></span> by Company.com</p>
-                    </div><!-- /.inner-container -->
-                </div><!-- /.container -->
-            </div><!-- /.bottom-footer -->
-        </footer><!-- /.site-footer -->
+		
+		
+	 <!-- Footer Area Start -->
+      <div w3-include-html="Components\Footer.html"></div>
+	   <!-- Footer Area End -->
+      
 
     </div><!-- /.page-wrapper -->
 
@@ -374,7 +223,7 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="organik-icon-email"></i>
-                    <a href="mailto:needhelp@organik.com">needhelp@organik.com</a>
+                    <a href="mailto:needhelp@organik.com">@i-a.shop</a>
                 </li>
                 <li>
                     <i class="organik-icon-calling"></i>
@@ -494,6 +343,9 @@
     <script src="assets/vendors/countdown/countdown.min.js"></script>
     <!-- template js -->
     <script src="assets/js/organik.js"></script>
+	<script>
+includeHTML();
+</script>
 </body>
 
 </html>
