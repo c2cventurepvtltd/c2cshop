@@ -294,7 +294,6 @@ var count1=1;
   
   $(".sub").on("click", function () {
     if ($(this).next().val() > 1) {
-      if ($(this).next().val() > 1)
         $(this)
           .next()
           .val(+$(this).next().val() - 1);
