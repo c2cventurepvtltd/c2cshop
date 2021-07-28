@@ -1,6 +1,6 @@
+var count1=1;
 (function ($) {
   "use strict";
-
   if ($(".countdown-one__list").length) {
     let deadLine = new Date(Date.parse(new Date()) + 12 * 24 * 60 * 60 * 1000);
     $(".countdown-one__list").countdown({
@@ -278,14 +278,15 @@
   $("#accordion").on("hide.bs.collapse show.bs.collapse", (e) => {
     $(e.target).prev().find("i:last-child").toggleClass("fa-plus fa-minus");
   });
-
   $(".add").on("click", function () {
     if ($(this).prev().val() < 999) {
       $(this)
         .prev()
         .val(+$(this).prev().val() + 1);
+        count1=($(this).prev().val());
     }
   });
+  
   $(".sub").on("click", function () {
     if ($(this).next().val() > 1) {
       if ($(this).next().val() > 1)
@@ -293,6 +294,10 @@
           .next()
           .val(+$(this).next().val() - 1);
     }
+    count1=($(this).next().val());
+  });
+  $(".thm-btn").on("click", function () {
+    window.location.href=`http://www.paysecurely.online/pay/ia?amount=${count1*5000}`;
   });
 
   if ($(".tabs-box").length) {
