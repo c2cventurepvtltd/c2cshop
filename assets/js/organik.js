@@ -278,13 +278,17 @@ var count1=1;
   $("#accordion").on("hide.bs.collapse show.bs.collapse", (e) => {
     $(e.target).prev().find("i:last-child").toggleClass("fa-plus fa-minus");
   });
+  //regex start--->
+  const vl=document.querySelector(".val");
+  const price=vl.innerHTML.replace(/\D/g,'')
+  //regex end--->
   $(".add").on("click", function () {
     if ($(this).prev().val() < 999) {
       $(this)
         .prev()
         .val(+$(this).prev().val() + 1);
         count1=($(this).prev().val());
-      $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*5000}</p>`);
+      $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
     }
   });
   
@@ -296,10 +300,10 @@ var count1=1;
           .val(+$(this).next().val() - 1);
     }
     count1=($(this).next().val());
-    $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*5000}</p>`);
+    $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
   });
   $(".thm-btn").on("click", function () {
-    window.location.href=`http://www.paysecurely.online/pay/ia?amount=${count1*5000}`;
+    window.location.href=`http://www.paysecurely.online/pay/ia?amount=${count1*price}`;
   });
 
   if ($(".tabs-box").length) {
