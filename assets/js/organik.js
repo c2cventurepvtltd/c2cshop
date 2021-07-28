@@ -1,4 +1,5 @@
 var count1=1;
+var price;
 (function ($) {
   "use strict";
   if ($(".countdown-one__list").length) {
@@ -278,28 +279,32 @@ var count1=1;
   $("#accordion").on("hide.bs.collapse show.bs.collapse", (e) => {
     $(e.target).prev().find("i:last-child").toggleClass("fa-plus fa-minus");
   });
-  //regex start--->
-  const vl=document.querySelector(".val");
-  const price=vl.innerHTML.replace(/\D/g,'')
-  //regex end--->
   $(".add").on("click", function () {
+    if(count1==1){
+    price=document.querySelector(".val").innerHTML.replace(/[^0-9]/gi, ''); 
+    }
     if ($(this).prev().val() < 999) {
       $(this)
         .prev()
         .val(+$(this).prev().val() + 1);
         count1=($(this).prev().val());
-      $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
-    }
+
+        $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
+       
+      }
   });
   
   $(".sub").on("click", function () {
+    if(count1==1){
+      price=document.querySelector(".val").innerHTML.replace(/[^0-9]/gi, ''); 
+      }
     if ($(this).next().val() > 1) {
         $(this)
           .next()
           .val(+$(this).next().val() - 1);
-    }
-    count1=($(this).next().val());
-    $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
+          count1=($(this).next().val());
+          $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*price}</p>`);
+        }
   });
   $(".thm-btn").on("click", function () {
     window.location.href=`http://www.paysecurely.online/pay/ia?amount=${count1*price}`;
