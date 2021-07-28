@@ -284,6 +284,7 @@ var count1=1;
         .prev()
         .val(+$(this).prev().val() + 1);
         count1=($(this).prev().val());
+      $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*5000}</p>`);
     }
   });
   
@@ -295,6 +296,7 @@ var count1=1;
           .val(+$(this).next().val() - 1);
     }
     count1=($(this).next().val());
+    $( ".product_detail_price_box" ).html( `<p>Price:Rs ${count1*5000}</p>`);
   });
   $(".thm-btn").on("click", function () {
     window.location.href=`http://www.paysecurely.online/pay/ia?amount=${count1*5000}`;
