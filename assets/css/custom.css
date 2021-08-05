@@ -36,6 +36,23 @@
   text-decoration: underline;
 }
 
+/* Styles for privacy, t & c pages */
+/* Giving spacing between top and bottom of each section. */
+.privacy-policy article, .terms-and-conditions article {
+  margin-top: 2.5rem;
+  margin-bottom: -1.5rem;
+}
+
+.privacy-policy article h4, .terms-and-conditions article h4 {
+  margin: 10px 0;
+}
+
+.privacy-policy article p, .terms-and-conditions article p {
+  margin: 12px 0;
+  font-size: 18px;
+}
+/* End of styles for privacy, t & c pages */
+
 @media (max-width: 450px) {
   .logo-box img {
     width: 100px;
