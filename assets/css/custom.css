@@ -1,0 +1,43 @@
+/* Contains navbar styles for privacy page, t & c */
+
+.navbar {
+  width: 100%;
+  padding: 10px 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 12px 6px;
+}
+
+.navbar-nav {
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.navbar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.navbar-nav a {
+  font-family: 'Rubik', 'Segoe UI', Arial;
+  text-decoration: none;
+  color: #3a3636;
+  font-size: 19px;
+  font-weight: 400;
+  margin-right: 30px;
+}
+
+.navbar a:hover {
+  color: #35a04c;
+  text-decoration: underline;
+}
+
+@media (max-width: 450px) {
+  .logo-box img {
+    width: 100px;
+  }
+}
