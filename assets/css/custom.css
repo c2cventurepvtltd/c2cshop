@@ -38,6 +38,16 @@
 
 /* Styles for privacy, t & c pages */
 /* Giving spacing between top and bottom of each section. */
+
+.privacy-policy, .terms-and-conditions {
+  margin: 2rem auto 4rem auto;
+}
+
+.privacy-policy > .container, .terms-and-conditions > .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .privacy-policy article, .terms-and-conditions article {
   margin-top: 2.5rem;
   margin-bottom: -1.5rem;
@@ -45,11 +55,14 @@
 
 .privacy-policy article h4, .terms-and-conditions article h4 {
   margin: 10px 0;
+  font-weight: 600;
 }
 
-.privacy-policy article p, .terms-and-conditions article p {
+.privacy-policy p, .terms-and-conditions p{
   margin: 12px 0;
   font-size: 18px;
+  color: #696969;
+  font-weight: 400;
 }
 /* End of styles for privacy, t & c pages */
 
