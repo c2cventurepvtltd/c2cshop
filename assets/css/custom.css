@@ -1,0 +1,73 @@
+/* Contains navbar styles for privacy page, t & c */
+
+.navbar {
+  width: 100%;
+  padding: 10px 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 12px 6px;
+}
+
+.navbar-nav {
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.navbar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.navbar-nav a {
+  font-family: 'Rubik', 'Segoe UI', Arial;
+  text-decoration: none;
+  color: #3a3636;
+  font-size: 19px;
+  font-weight: 400;
+  margin-right: 30px;
+}
+
+.navbar a:hover {
+  color: #35a04c;
+  text-decoration: underline;
+}
+
+/* Styles for privacy, t & c pages */
+/* Giving spacing between top and bottom of each section. */
+
+.privacy-policy, .terms-and-conditions {
+  margin: 2rem auto 4rem auto;
+}
+
+.privacy-policy > .container, .terms-and-conditions > .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.privacy-policy article, .terms-and-conditions article {
+  margin-top: 2.5rem;
+  margin-bottom: -1.5rem;
+}
+
+.privacy-policy article h4, .terms-and-conditions article h4 {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.privacy-policy p, .terms-and-conditions p{
+  margin: 12px 0;
+  font-size: 18px;
+  color: #696969;
+  font-weight: 400;
+}
+/* End of styles for privacy, t & c pages */
+
+@media (max-width: 450px) {
+  .logo-box img {
+    width: 100px;
+  }
+}
