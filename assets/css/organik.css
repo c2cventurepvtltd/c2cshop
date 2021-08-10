@@ -3263,7 +3263,7 @@ h6 {
 }
 
 .site-footer__shape-1 {
-  top: 0;
+  bottom: 0;
   right: 0;
 }
 
@@ -3444,7 +3444,7 @@ h6 {
 }
 
 .bottom-footer {
-  padding-bottom: 40px;
+/*   padding-bottom: 40px; */
   padding-top: 50px;
 }
 
